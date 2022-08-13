@@ -51,7 +51,8 @@ namespace Platformer.Mechanics
             if (jump && IsGrounded)
             {
                 velocity.y = jumpTakeOffSpeed * model.jumpModifier;
-                jump = false;
+                //jump = false;
+                //this makes it so the thing will jump as soon as it lands if jump is enabled
             }
             else if (stopJump)
             {
