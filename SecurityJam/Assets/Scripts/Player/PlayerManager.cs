@@ -9,7 +9,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private SpriteRenderer guardRenderer;
     [SerializeField] private SpriteRenderer flashlightRenderer;
     [SerializeField] private Animator guardAnimator;
-    [SerializeField] private Transform flashlightGameObj;
+    [SerializeField] private Transform flashlightTransform;
+    [SerializeField] private GameObject lightRight;
+    [SerializeField] private GameObject lightLeft;
 
 
     void Update()
@@ -25,13 +27,17 @@ public class PlayerManager : MonoBehaviour
         {
             guardRenderer.flipX = false;
             flashlightRenderer.flipX = false;
-            flashlightGameObj.localPosition = new Vector3(0.15f, flashlightGameObj.localPosition.y, flashlightGameObj.localPosition.z);
+            flashlightTransform.localPosition = new Vector3(0.15f, flashlightTransform.localPosition.y, flashlightTransform.localPosition.z);
+            lightRight.SetActive(true);
+            lightLeft.SetActive(false);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             guardRenderer.flipX = true;
             flashlightRenderer.flipX = true;
-            flashlightGameObj.localPosition = new Vector3(-0.2f, flashlightGameObj.localPosition.y, flashlightGameObj.localPosition.z);
+            flashlightTransform.localPosition = new Vector3(-0.2f, flashlightTransform.localPosition.y, flashlightTransform.localPosition.z);
+            lightRight.SetActive(false);
+            lightLeft.SetActive(true);
 
         }
     }
