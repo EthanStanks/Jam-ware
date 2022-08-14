@@ -11,10 +11,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Animator guardAnimator;
     [SerializeField] private Transform flashlightGameObj;
 
+
     void Update()
     {
         MovePlayer();
         FlipPlayerSprites();
+
     }
 
     void FlipPlayerSprites()
@@ -36,9 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     void MovePlayer()
     {
-        //float h = Input.GetAxisRaw("Horizontal");
-        //gameObject.transform.position = new Vector2(transform.position.x + (h * playerSpeed), transform.position.y);
-        //guardAnimator.SetTrigger("Walking");
+        
         if (Input.GetKey(KeyCode.D))
         {
             playerGameObj.transform.position += Vector3.right * guardSpeed * Time.deltaTime;
