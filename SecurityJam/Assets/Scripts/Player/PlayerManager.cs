@@ -12,13 +12,17 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform flashlightTransform;
     [SerializeField] private GameObject lightRight;
     [SerializeField] private GameObject lightLeft;
+    [SerializeField] private GameObject interactable;
 
 
     void Update()
     {
         MovePlayer();
         FlipPlayerSprites();
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
     }
 
     void FlipPlayerSprites()
@@ -59,4 +63,44 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
             guardAnimator.SetBool("isWalking", false);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("stairs") || collision.gameObject.CompareTag("Valuables") || collision.gameObject.CompareTag("Broken"))
+        {
+            interactable = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+            interactable = null;
+    }
+
+    void Interact()//context sensitive interaction
+    {
+        if (interactable != null)
+        {
+            if (interactable.CompareTag("stairs"))
+            {
+                useStairs(interactable);
+                //interactable = null;
+            }
+        }
+    }
+
+    void useStairs(GameObject stairs)
+    {
+        if (stairs.GetComponent<Stairs>().goesUp == false)
+        {
+            playerGameObj.transform.position += Vector3.up * -0.4f;
+            playerGameObj.transform.position += Vector3.right * -0.3f;
+        }
+        if (stairs.GetComponent<Stairs>().goesUp == true)
+        {
+            playerGameObj.transform.position += Vector3.up * 0.4f;
+            playerGameObj.transform.position += Vector3.right * 0.3f;
+        }
+    }
+
 }
