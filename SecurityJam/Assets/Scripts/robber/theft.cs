@@ -6,7 +6,9 @@ using UnityEngine;
 public class theft : MonoBehaviour
 {
 
-    bool walkingRight, walkingLeft;
+    bool walkingRight, walkingLeft; 
+    public bool usedStairs = false;
+    int temp = 0;
     [SerializeField] private GameObject robberObj;
     //[SerializeField] private Animator robberAnimator;
     [SerializeField] private float robbingSpeed;
@@ -28,12 +30,24 @@ public class theft : MonoBehaviour
         {
             walkLeft();
         }
+        if (usedStairs)
+        {
+            temp++;
+            if (temp == 50){ usedStairs = false; temp = 0; }
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D hitter)
     {
-        walkingRight = !walkingRight;
-        walkingLeft = !walkingLeft;
+        if (hitter.gameObject.tag == "stairs")
+        {
+            considerStairs(hitter.gameObject);
+        }
+        else
+        {
+            walkingLeft = !walkingLeft;
+            walkingRight = !walkingRight;
+        }
     }
 
     string coinFlip()
@@ -79,16 +93,28 @@ public class theft : MonoBehaviour
         }
     }
 
-    void considerStairs()
+    void considerStairs(GameObject stairs)
     {
         string choice = coinFlip();
-        if (choice == "heads")
+        if (choice == "heads" && usedStairs == false)
         {
             //use stairs
+            useStairs(stairs);
+            usedStairs = true;
         }
-        else if (choice == "tails")
+    }
+
+    void useStairs(GameObject stairs)
+    {
+        if (stairs.GetComponent<Stairs>().goesUp == false)
         {
-            //ignore stairs
+            robberObj.transform.position += Vector3.up * -0.4f;
+            robberObj.transform.position += Vector3.right * -0.3f;
+        }
+        if (stairs.GetComponent<Stairs>().goesUp == true)
+        {
+            robberObj.transform.position += Vector3.up * 0.4f;
+            robberObj.transform.position += Vector3.right * 0.3f;
         }
     }
 }
