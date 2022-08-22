@@ -39,7 +39,7 @@ public class theft : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitter)
     {
-        if (hitter.gameObject.tag == "stairs")
+        if (hitter.gameObject.CompareTag("stairs"))
         {
             considerStairs(hitter.gameObject);
         }

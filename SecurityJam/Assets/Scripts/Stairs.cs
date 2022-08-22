@@ -7,6 +7,7 @@ public class Stairs : MonoBehaviour
     private bool canUse = false;
     [SerializeField] private GameObject stairsObj;
     [SerializeField] public bool goesUp = true;
+    [SerializeField] public GameObject useGraphic;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class Stairs : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             canUse = true;
+            useGraphic.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
@@ -32,6 +34,7 @@ public class Stairs : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             canUse = false;
+            useGraphic.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
