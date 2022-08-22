@@ -52,7 +52,7 @@ public class CameraController : MonoBehaviour
         alertIntruder.transform.localPosition = new Vector3(-0.312000006f, 0.0240000002f, 0.248394936f); // move the intruder alert behind the camera
         alertBreakIn.transform.localPosition = new Vector3(-0.391000003f, 0.0500000007f, 0.248394936f); // move the break in alert behind the camera
         redLight.transform.localPosition = new Vector3(-0.064000003f, 0.0200001374f, 0.248394936f); // move the break in alert behind the camera
-        raycastObj.transform.localPosition = new Vector3(0.222000003f, -0.0610000007f, 0); // move the raycast obj
+        raycastObj.transform.localPosition = new Vector3(0.222000003f, -0.9f, 0); // move the raycast obj
         cameraDirection = 1f;
     }
     void LeftFacingCamera()
@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour
         alertIntruder.transform.localPosition = new Vector3(0.286000013f, -0.00899999961f, 0.248394936f); // move the intruder alert behind the camera
         alertBreakIn.transform.localPosition = new Vector3(0.389999986f, 0.0399999991f, 0.248394936f); // move the break in alert behind the camera
         redLight.transform.localPosition = new Vector3(0.0659998208f, 0.0200001374f, 0.248394936f); // move the red light to the correct position
-        raycastObj.transform.localPosition = new Vector3(-0.206f, -0.0610000007f, 0); // move the raycast obj
+        raycastObj.transform.localPosition = new Vector3(-0.206f, -0.9f, 0); // move the raycast obj
         cameraDirection = -1f;
     }
     void SeenBreakIn(bool isSeen)
@@ -70,25 +70,31 @@ public class CameraController : MonoBehaviour
     }
     void SeenIntruder(bool isSeen)
     {
+        if (isSeen == true) SeenBreakIn(false);
         alertIntruder.SetActive(isSeen);
     }
 
     void ScanArea()
     {
-        RaycastHit2D hit = Physics2D.Raycast(raycastObj.transform.position, transform.right * cameraDirection, raycastDistance, layerMask);
+        Vector3 origin = raycastObj.transform.position;
+        Vector3 direction = transform.right * cameraDirection;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, raycastDistance, layerMask);
 
-        if (hit.transform != null)
+        foreach (var hit in hits)
         {
-            if (hit.transform.gameObject.CompareTag("Robber"))
+            if (hit.transform != null) // if it hits something
             {
-                Debug.Log("Found Robber");
-                Debug.DrawRay(raycastObj.transform.position, raycastObj.transform.right * cameraDirection, Color.red);
+                if (hit.transform.gameObject.CompareTag("Robber")) // if that something is a robber
+                {
+                    seenIntruder = true;
+                    //Debug.DrawRay(origin, direction, Color.red); // shows the raytrace line if it hits a robber
+                }
+                else if (hit.transform.gameObject.CompareTag("Broken")) // if that something is in broken state
+                {
+                    seenBreakIn = true;
+                    //Debug.DrawRay(origin, direction, Color.blue); // shows the raytrace line if it hits a broken obj
+                }
             }
-            else Debug.Log(hit.transform.gameObject.tag);
-        }
-        else
-        {
-            Debug.DrawRay(raycastObj.transform.position, raycastObj.transform.right * cameraDirection, Color.green);
         }
     }
 }
