@@ -92,7 +92,7 @@ public class CameraController : MonoBehaviour
                 else if (hit.transform.gameObject.CompareTag("Broken")) // if that something is in broken state
                 {
                     seenBreakIn = true;
-                    //Debug.DrawRay(origin, direction, Color.blue); // shows the raytrace line if it hits a broken obj
+                    Debug.DrawRay(origin, direction, Color.blue); // shows the raytrace line if it hits a broken obj
                 }
             }
         }
