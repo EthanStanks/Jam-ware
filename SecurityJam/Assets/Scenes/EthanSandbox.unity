@@ -130,32 +130,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1016602279174209164, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1016602280273844556, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1016602280404889427, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
-      propertyPath: guardSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1016602280404889428, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1016602280404889428, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1016602280404889428, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1016602280404889428, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
-      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1016602280404889428, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}

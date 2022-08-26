@@ -16,6 +16,7 @@ public class theft : MonoBehaviour
     internal Collider2D _collider;
     [SerializeField] private GameObject nothing;
     [SerializeField] private GameObject full;
+    [SerializeField] public bool isCaught; // this will be set to true if the robber is in the player flashlight
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,10 @@ public class theft : MonoBehaviour
         {
             temp++;
             if (temp == 50){ usedStairs = false; temp = 0; }
+        }
+        if(isCaught)
+        {
+            Debug.Log("I've been beated by a big flashlight");
         }
     }
 
