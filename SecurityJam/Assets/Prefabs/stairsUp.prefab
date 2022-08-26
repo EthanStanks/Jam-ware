@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1283806902}
   - component: {fileID: 1283806906}
   m_Layer: 0
-  m_Name: stairs
+  m_Name: stairsUp
   m_TagString: stairs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
