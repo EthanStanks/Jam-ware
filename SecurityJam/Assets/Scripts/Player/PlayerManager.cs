@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject lightRight;
     [SerializeField] private GameObject lightLeft;
     [SerializeField] private GameObject interactable;
+    [SerializeField] float stairsVertical, stairsHorizontal;
 
 
     void Update()
@@ -93,13 +94,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (stairs.GetComponent<Stairs>().goesUp == false)
         {
-            playerGameObj.transform.position += Vector3.up * -0.4f;
-            playerGameObj.transform.position += Vector3.right * -0.3f;
+            playerGameObj.transform.position += Vector3.up * -stairsVertical;
+            playerGameObj.transform.position += Vector3.right * -stairsHorizontal;
         }
         if (stairs.GetComponent<Stairs>().goesUp == true)
         {
-            playerGameObj.transform.position += Vector3.up * 0.4f;
-            playerGameObj.transform.position += Vector3.right * 0.3f;
+            playerGameObj.transform.position += Vector3.up * stairsVertical;
+            playerGameObj.transform.position += Vector3.right * stairsHorizontal;
         }
     }
 

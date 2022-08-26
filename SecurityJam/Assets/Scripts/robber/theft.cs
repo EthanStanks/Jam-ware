@@ -8,15 +8,20 @@ public class theft : MonoBehaviour
 
     bool walkingRight, walkingLeft; 
     public bool usedStairs = false;
+    private bool hasGem = false;
     int temp = 0;
     [SerializeField] private GameObject robberObj;
     //[SerializeField] private Animator robberAnimator;
     [SerializeField] private float robbingSpeed;
     internal Collider2D _collider;
+    [SerializeField] private GameObject nothing;
+    [SerializeField] private GameObject full;
     // Start is called before the first frame update
     void Start()
     {
         walkinAround();
+        nothing.SetActive(true);
+        full.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,7 +48,16 @@ public class theft : MonoBehaviour
         {
             considerStairs(hitter.gameObject);
         }
-        else
+        else if (hitter.gameObject.CompareTag("Valuables"))
+        {
+            if (hasGem == false)
+            {
+                hasGem = true;
+                nothing.SetActive(false);
+                full.SetActive(true);
+            }
+        }
+        else 
         {
             walkingLeft = !walkingLeft;
             walkingRight = !walkingRight;

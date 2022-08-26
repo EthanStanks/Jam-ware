@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stairs : MonoBehaviour
 {
-    private bool canUse = false;
+    //private bool canUse = false;
     [SerializeField] private GameObject stairsObj;
     [SerializeField] public bool goesUp = true;
     [SerializeField] public GameObject useGraphic;
@@ -24,7 +24,7 @@ public class Stairs : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            canUse = true;
+            //canUse = true;
             useGraphic.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
@@ -33,7 +33,7 @@ public class Stairs : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            canUse = false;
+            //canUse = false;
             useGraphic.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
