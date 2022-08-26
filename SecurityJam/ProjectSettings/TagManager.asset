@@ -10,6 +10,7 @@ TagManager:
   - Valuables
   - Exit
   - Broken
+  - Entrance
   layers:
   - Default
   - TransparentFX
