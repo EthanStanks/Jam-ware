@@ -9,7 +9,7 @@ public class theft : MonoBehaviour
     bool walkingRight, walkingLeft; 
     public bool usedStairs = false;
     private bool hasGem = false;
-    int temp = 0;
+    int temp = 0;    int num = 15;
     [SerializeField] private GameObject robberObj;
     //[SerializeField] private Animator robberAnimator;
     [SerializeField] private float robbingSpeed;
@@ -17,10 +17,12 @@ public class theft : MonoBehaviour
     [SerializeField] private GameObject nothing;
     [SerializeField] private GameObject full;
     [SerializeField] public bool isCaught; // this will be set to true if the robber is in the player flashlight
+    [SerializeField] float stairsVertical, stairsHorizontal;
+    [SerializeField] GameObject myJewel;
     // Start is called before the first frame update
     void Start()
     {
-        walkinAround();
+        WalkinAround();
         nothing.SetActive(true);
         full.SetActive(false);
     }
@@ -30,11 +32,11 @@ public class theft : MonoBehaviour
     {
         if (walkingRight)
         {
-            walkRight();
+            WalkRight();
         }
         else if (walkingLeft)
         {
-            walkLeft();
+            WalkLeft();
         }
         if (usedStairs)
         {
@@ -43,7 +45,12 @@ public class theft : MonoBehaviour
         }
         if(isCaught)
         {
-            Debug.Log("I've been beated by a big flashlight");
+            //robberObj.transform.rotation = new Quaternion(0, 0, num, 1).eulerAngles;
+            num += 15;
+            if (num > 15000)
+            {
+                ThiefDies();
+            }
         }
     }
 
@@ -51,7 +58,7 @@ public class theft : MonoBehaviour
     {
         if (hitter.gameObject.CompareTag("stairs"))
         {
-            considerStairs(hitter.gameObject);
+            ConsiderStairs(hitter.gameObject);
         }
         else if (hitter.gameObject.CompareTag("Valuables"))
         {
@@ -69,7 +76,7 @@ public class theft : MonoBehaviour
         }
     }
 
-    string coinFlip()
+    string CoinFlip()
     {
         int random2 = Random.Range(0,10);
 
@@ -87,19 +94,19 @@ public class theft : MonoBehaviour
         }
     }
 
-    void walkRight()
+    void WalkRight()
     {
         robberObj.transform.position += Vector3.right * robbingSpeed * Time.deltaTime;
     }
 
-    void walkLeft()
+    void WalkLeft()
     {
         robberObj.transform.position += Vector3.right * -robbingSpeed * Time.deltaTime;
     }
 
-    void walkinAround()
+    void WalkinAround()
     {
-        string choice = coinFlip();
+        string choice = CoinFlip();
         if (choice == "heads")
         {
             walkingRight = true; walkingLeft = false;
@@ -112,28 +119,37 @@ public class theft : MonoBehaviour
         }
     }
 
-    void considerStairs(GameObject stairs)
+    void ConsiderStairs(GameObject stairs)
     {
-        string choice = coinFlip();
+        string choice = CoinFlip();
         if (choice == "heads" && usedStairs == false)
         {
             //use stairs
-            useStairs(stairs);
+            UseStairs(stairs);
             usedStairs = true;
         }
     }
 
-    void useStairs(GameObject stairs)
+    void UseStairs(GameObject stairs)
     {
         if (stairs.GetComponent<Stairs>().goesUp == false)
         {
-            robberObj.transform.position += Vector3.up * -0.4f;
-            robberObj.transform.position += Vector3.right * -0.3f;
+            robberObj.transform.position += Vector3.up * -stairsVertical;
+            robberObj.transform.position += Vector3.right * -stairsHorizontal;
         }
         if (stairs.GetComponent<Stairs>().goesUp == true)
         {
-            robberObj.transform.position += Vector3.up * 0.4f;
-            robberObj.transform.position += Vector3.right * 0.3f;
+            robberObj.transform.position += Vector3.up * stairsVertical;
+            robberObj.transform.position += Vector3.right * stairsHorizontal;
         }
+    }
+
+    void ThiefDies()
+    {
+        if (hasGem)
+        {
+            Instantiate(myJewel);
+        }
+        Destroy(robberObj);
     }
 }
