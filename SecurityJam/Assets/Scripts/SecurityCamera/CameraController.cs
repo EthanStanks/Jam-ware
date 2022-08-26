@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] float raycastDistance;
     [SerializeField] float cameraDirection;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] bool isLeftFacingCamera;
+    [SerializeField] bool isRightFacingCamera;
 
     private void Start()
     {
@@ -36,11 +38,11 @@ public class CameraController : MonoBehaviour
             rotateTime = Time.time + rotateCooldown;
             seenBreakIn = false; // resets break in alert
             seenIntruder = false; // resets intruder alert
-            if (cameraSpriteRenderer.flipX == false) // if camera is facing to the left
+            if (cameraSpriteRenderer.flipX == false && isRightFacingCamera) // if camera is facing to the left
             {
                 RightFacingCamera(); // makes camera face the right
             }
-            else // if camera is facing to the right
+            else if(cameraSpriteRenderer.flipX == true && isLeftFacingCamera)// if camera is facing to the right
             {
                 LeftFacingCamera(); // makes camera face the left
             }
