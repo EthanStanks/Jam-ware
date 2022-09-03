@@ -67,6 +67,7 @@ public class theft : MonoBehaviour
                 hasGem = true;
                 nothing.SetActive(false);
                 full.SetActive(true);
+                myJewel = hitter.gameObject.GetComponent<Valuables>().jewel;
             }
         }
         else 
@@ -78,13 +79,13 @@ public class theft : MonoBehaviour
 
     string CoinFlip()
     {
-        int random2 = Random.Range(0,10);
+        int random2 = Random.Range(0, 10);
 
-        if (random2%2 == 0)
+        if (random2 % 2 == 0)
         {
             return "heads";
         }
-        else if (random2%2 == 1)
+        else if (random2 % 2 == 1)
         {
             return "tails";
         }

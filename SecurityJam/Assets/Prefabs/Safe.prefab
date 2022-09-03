@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9023060588770869170}
   - component: {fileID: 9023060588770869133}
   m_Layer: 0
-  m_Name: Valuable
+  m_Name: Safe
   m_TagString: Valuables
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 9023060588770869129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.13, y: -0.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   Renderer: {fileID: 9023060588770869135}
   open: {fileID: 398142466, guid: bebe875a6f1244144b6f65d4100c9398, type: 3}
   closed: {fileID: 469899907, guid: bebe875a6f1244144b6f65d4100c9398, type: 3}
+  jewel: {fileID: 5197805874428250064, guid: 470dd80b488422e41a05ca3a92ad7f2d, type: 3}
 --- !u!61 &9023060588770869170
 BoxCollider2D:
   m_ObjectHideFlags: 0
