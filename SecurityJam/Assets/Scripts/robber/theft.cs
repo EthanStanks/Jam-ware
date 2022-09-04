@@ -9,8 +9,9 @@ public class theft : MonoBehaviour
     bool walkingRight, walkingLeft; 
     public bool usedStairs = false;
     private bool hasGem = false;
-    int temp = 0;    int num = 15;
+    int temp = 0;    //float num = 0.01f;
     [SerializeField] private GameObject robberObj;
+    [SerializeField] private SpriteRenderer robberRenderer;
     //[SerializeField] private Animator robberAnimator;
     [SerializeField] private float robbingSpeed;
     internal Collider2D _collider;
@@ -45,12 +46,7 @@ public class theft : MonoBehaviour
         }
         if(isCaught)
         {
-            //robberObj.transform.rotation = new Quaternion(0, 0, num, 1).eulerAngles;
-            num += 15;
-            if (num > 15000)
-            {
-                ThiefDies();
-            }
+            ThiefDies();
         }
     }
 
@@ -147,10 +143,29 @@ public class theft : MonoBehaviour
 
     void ThiefDies()
     {
+        StartCoroutine(Fade());
         if (hasGem)
         {
-            Instantiate(myJewel);
+            //Instantiate(myJewel);
         }
-        Destroy(robberObj);
+        if (robberRenderer.material.color.a < 0.1f)
+        {
+            Destroy(robberObj);
+        }
     }
+
+    IEnumerator Fade()
+    {
+        Color c = robberRenderer.material.color;
+        while (c.a >= 0.1f)
+        {
+            Debug.Log("Started Coroutine at timestamp : " + Time.time);
+            c.a -= 0.05f;
+            robberRenderer.material.color = c;
+            yield return new WaitForSeconds(10.1f);
+            Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+            //left off here trying to make fade out death for robber man kill him good future me
+        }
+    }
+
 }

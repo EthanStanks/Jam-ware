@@ -877,6 +877,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1016602279174209164, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016602280273844556, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1016602280404889427, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
       propertyPath: guardSpeed
       value: 12
@@ -1041,6 +1049,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!212 &954329614 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6362606353433700228, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+  m_PrefabInstance: {fileID: 2135006673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1834372893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1176,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6221501503592121562, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+      propertyPath: robberRenderer
+      value: 
+      objectReference: {fileID: 954329614}
+    - target: {fileID: 6362606353433700228, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6362606353583608220, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1210,6 +1231,14 @@ PrefabInstance:
     - target: {fileID: 6362606353583608221, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
       propertyPath: m_Name
       value: Robber
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370346866988754401, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082394467168456092, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
@@ -1328,6 +1357,10 @@ PrefabInstance:
     - target: {fileID: 730256777890252116, guid: bf6d4e41d05819e49a37ef2d822bb2c5, type: 3}
       propertyPath: m_Name
       value: stairsUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 730256777890252117, guid: bf6d4e41d05819e49a37ef2d822bb2c5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf6d4e41d05819e49a37ef2d822bb2c5, type: 3}
