@@ -7,6 +7,7 @@ public class Valuables : MonoBehaviour
     private bool broken;
     [SerializeField] SpriteRenderer Renderer;
     [SerializeField] Sprite open, closed;
+    [SerializeField] public GameObject jewel;
 
 
     // Start is called before the first frame update
