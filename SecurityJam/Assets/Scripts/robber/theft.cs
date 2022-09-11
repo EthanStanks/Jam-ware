@@ -9,6 +9,7 @@ public class theft : MonoBehaviour
     bool walkingRight, walkingLeft; 
     public bool usedStairs = false;
     private bool hasGem = false;
+    private bool isLivin = true;
     int temp = 0;    //float num = 0.01f;
     [SerializeField] private GameObject robberObj;
     [SerializeField] private SpriteRenderer robberRenderer;
@@ -20,6 +21,7 @@ public class theft : MonoBehaviour
     [SerializeField] public bool isCaught; // this will be set to true if the robber is in the player flashlight
     [SerializeField] float stairsVertical, stairsHorizontal;
     [SerializeField] GameObject myJewel;
+    string jewelType = "none";
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +46,17 @@ public class theft : MonoBehaviour
             temp++;
             if (temp == 50){ usedStairs = false; temp = 0; }
         }
-        if(isCaught)
+        if(isCaught && isLivin)
         {
+            isLivin = false;
             ThiefDies();
+        }
+        if (!isLivin)
+        {
+            if (robberRenderer.material.color.a < 0.06f)
+            {
+                Destroy(robberObj);
+            }
         }
     }
 
@@ -56,14 +66,15 @@ public class theft : MonoBehaviour
         {
             ConsiderStairs(hitter.gameObject);
         }
-        else if (hitter.gameObject.CompareTag("Valuables"))
+        else if (hitter.gameObject.CompareTag("Storage"))
         {
             if (hasGem == false)
             {
                 hasGem = true;
                 nothing.SetActive(false);
                 full.SetActive(true);
-                myJewel = hitter.gameObject.GetComponent<Valuables>().jewel;
+                myJewel = hitter.gameObject.GetComponent<Storage>().jewel;
+                jewelType = hitter.gameObject.GetComponent<Storage>().jewelType;
             }
         }
         else 
@@ -146,26 +157,25 @@ public class theft : MonoBehaviour
         StartCoroutine(Fade());
         if (hasGem)
         {
-            //Instantiate(myJewel);
-        }
-        if (robberRenderer.material.color.a < 0.1f)
-        {
-            Destroy(robberObj);
+            GameObject jewelInstance;
+            jewelInstance = Instantiate(myJewel, robberObj.transform.position, robberObj.transform.rotation);
+            jewelInstance.GetComponent<Valuables>().jewelType = jewelType;
         }
     }
 
     IEnumerator Fade()
     {
         Color c = robberRenderer.material.color;
-        while (c.a >= 0.1f)
+        //Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        while (c.a >= 0.06f)
         {
-            Debug.Log("Started Coroutine at timestamp : " + Time.time);
             c.a -= 0.05f;
             robberRenderer.material.color = c;
-            yield return new WaitForSeconds(10.1f);
-            Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-            //left off here trying to make fade out death for robber man kill him good future me
+            full.GetComponent<SpriteRenderer>().material.color = c;
+            nothing.GetComponent<SpriteRenderer>().material.color = c;
+            yield return new WaitForSeconds(0.1f);
         }
+        //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 
 }

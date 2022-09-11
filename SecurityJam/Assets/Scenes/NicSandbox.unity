@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &26470187 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8370346866988754401, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+  m_PrefabInstance: {fileID: 2135006673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &138129093
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138129093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.09, y: -4.34, z: 0}
+  m_LocalPosition: {x: 5.05, y: -2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -889,6 +894,14 @@ PrefabInstance:
       propertyPath: guardSpeed
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1016602280404889427, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
+      propertyPath: stairsVertical
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016602280404889427, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
+      propertyPath: stairsHorizontal
+      value: 4.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1016602280404889428, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1049,6 +1062,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!212 &835880831 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9082394467168456092, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+  m_PrefabInstance: {fileID: 2135006673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &954329614 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6362606353433700228, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
@@ -1176,6 +1194,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6221501503592121562, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+      propertyPath: mahBag
+      value: 
+      objectReference: {fileID: 26470187}
+    - target: {fileID: 6221501503592121562, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
+      propertyPath: mahBagToo
+      value: 
+      objectReference: {fileID: 835880831}
     - target: {fileID: 6221501503592121562, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
       propertyPath: robberRenderer
       value: 
@@ -1357,10 +1383,6 @@ PrefabInstance:
     - target: {fileID: 730256777890252116, guid: bf6d4e41d05819e49a37ef2d822bb2c5, type: 3}
       propertyPath: m_Name
       value: stairsUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 730256777890252117, guid: bf6d4e41d05819e49a37ef2d822bb2c5, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf6d4e41d05819e49a37ef2d822bb2c5, type: 3}
@@ -2933,13 +2955,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Safe
       objectReference: {fileID: 0}
+    - target: {fileID: 9023060588770869129, guid: f6014cebcfc294948850f90741827a89, type: 3}
+      propertyPath: m_TagString
+      value: Storage
+      objectReference: {fileID: 0}
     - target: {fileID: 9023060588770869132, guid: f6014cebcfc294948850f90741827a89, type: 3}
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9023060588770869132, guid: f6014cebcfc294948850f90741827a89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.88
+      value: 10.49
       objectReference: {fileID: 0}
     - target: {fileID: 9023060588770869132, guid: f6014cebcfc294948850f90741827a89, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2976,6 +3002,10 @@ PrefabInstance:
     - target: {fileID: 9023060588770869132, guid: f6014cebcfc294948850f90741827a89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023060588770869134, guid: f6014cebcfc294948850f90741827a89, type: 3}
+      propertyPath: jewelType
+      value: Diamond
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6014cebcfc294948850f90741827a89, type: 3}

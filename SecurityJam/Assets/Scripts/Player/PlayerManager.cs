@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float raycastDistance;
     float guardDirection;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] GameObject heldObject;
+    Vector3 Shift = new Vector3(0, 2, 0);
 
     private void Start()
     {
@@ -31,6 +33,11 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
+        }
+        if (heldObject != null)
+        {
+            heldObject.transform.position = playerGameObj.transform.position;
+            heldObject.transform.position += Shift;
         }
     }
 
@@ -79,7 +86,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("stairs") || collision.gameObject.CompareTag("Valuables") || collision.gameObject.CompareTag("Broken"))
+        if (collision.gameObject.CompareTag("stairs") || collision.gameObject.CompareTag("Valuables") || collision.gameObject.CompareTag("Broken") || collision.gameObject.CompareTag("Storage"))
         {
             interactable = collision.gameObject;
         }
@@ -99,6 +106,17 @@ public class PlayerManager : MonoBehaviour
                 useStairs(interactable);
                 //interactable = null;
             }
+            else if (interactable.CompareTag("Valuables"))
+            {
+                heldObject = interactable;
+            }
+            else if (interactable.CompareTag("Storage"))
+            {
+                if (interactable.GetComponent<Storage>().broken && heldObject.GetComponent<Valuables>().jewelType == interactable.GetComponent<Storage>().jewelType)
+                {
+                    useStorage(interactable);
+                }
+            }
         }
     }
 
@@ -114,6 +132,13 @@ public class PlayerManager : MonoBehaviour
             playerGameObj.transform.position += Vector3.up * stairsVertical;
             playerGameObj.transform.position += Vector3.right * stairsHorizontal;
         }
+    }
+
+    void useStorage(GameObject storage)
+    {
+        storage.GetComponent<Storage>().Renderer.sprite = storage.GetComponent<Storage>().closed;
+        storage.GetComponent<Storage>().broken = false;
+        Destroy(heldObject);
     }
 
     void FlashlightRaycast()
