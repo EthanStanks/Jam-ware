@@ -896,7 +896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1016602280404889427, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
       propertyPath: stairsVertical
-      value: 4.6
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 1016602280404889427, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
       propertyPath: stairsHorizontal
