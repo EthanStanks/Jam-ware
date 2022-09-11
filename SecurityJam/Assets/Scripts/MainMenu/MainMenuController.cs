@@ -14,4 +14,21 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject objOptionButton;
     [SerializeField] GameObject objCreditButton;
     [SerializeField] GameObject objExitButton;
+
+    public void ButtonUnHover()
+    {
+        objDarkness.SetActive(true);
+        objPlayDarkness.SetActive(false);
+        objOptionDarkness.SetActive(false);
+        objCreditDarkness.SetActive(false);
+        objExitDarkness.SetActive(false);
+    }
+    public void ButtonHover(int button)
+    {
+        objDarkness.SetActive(false);
+        if(button == 0) objPlayDarkness.SetActive(true);
+        else if(button == 1) objOptionDarkness.SetActive(true);
+        else if(button == 2) objCreditDarkness.SetActive(true);
+        else if(button == 3) objExitDarkness.SetActive(true);
+    }
 }
