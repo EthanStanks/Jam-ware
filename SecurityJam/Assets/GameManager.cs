@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
     // escaped func
     public void RobberEscaped()
     {
+        // a life system for big maps
+    }
+
+    // spawn robber
+    void SpawnRobber()
+    {
 
     }
 }
