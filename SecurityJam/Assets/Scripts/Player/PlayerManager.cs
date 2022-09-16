@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     float guardDirection;
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject heldObject;
-    Vector3 Shift = new Vector3(0, 2, 0);
+    Vector3 Shift = new Vector3(0, 1.5f, 0);
 
     private void Start()
     {
