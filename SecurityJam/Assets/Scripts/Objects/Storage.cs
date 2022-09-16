@@ -41,7 +41,7 @@ public class Storage : MonoBehaviour
             openSafe();
             broken = true;
         }
-        if (hitter.gameObject.tag == "Player" && broken == true)
+        if (hitter.gameObject.tag == "Player" && broken == true && hitter.GetComponent<PlayerManager>().heldObject == jewel)
         {
             useGraphic.GetComponent<SpriteRenderer>().enabled = true;
         }

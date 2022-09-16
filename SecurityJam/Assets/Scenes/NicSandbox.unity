@@ -1187,6 +1187,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2026423715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5197805874428250064, guid: 470dd80b488422e41a05ca3a92ad7f2d, type: 3}
+  m_PrefabInstance: {fileID: 4758830149415972593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2135006673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3003,6 +3008,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9023060588770869134, guid: f6014cebcfc294948850f90741827a89, type: 3}
+      propertyPath: jewel
+      value: 
+      objectReference: {fileID: 2026423715}
     - target: {fileID: 9023060588770869134, guid: f6014cebcfc294948850f90741827a89, type: 3}
       propertyPath: jewelType
       value: Diamond

@@ -105,11 +105,17 @@ public class theft : MonoBehaviour
     void WalkRight()
     {
         robberObj.transform.position += Vector3.right * robbingSpeed * Time.deltaTime;
+        robberRenderer.flipX = false;
+        full.GetComponent<SpriteRenderer>().flipX = false;
+        nothing.GetComponent<SpriteRenderer>().flipX = false;
     }
 
     void WalkLeft()
     {
         robberObj.transform.position += Vector3.right * -robbingSpeed * Time.deltaTime;
+        robberRenderer.flipX = true;
+        full.GetComponent<SpriteRenderer>().flipX = true;
+        nothing.GetComponent<SpriteRenderer>().flipX = true;
     }
 
     void WalkinAround()

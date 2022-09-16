@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float raycastDistance;
     float guardDirection;
     [SerializeField] LayerMask layerMask;
-    [SerializeField] GameObject heldObject;
+    [SerializeField] public GameObject heldObject;
     Vector3 Shift = new Vector3(0, 1.5f, 0);
 
     private void Start()
