@@ -108,6 +108,10 @@ public class PlayerManager : MonoBehaviour
             }
             else if (interactable.CompareTag("Valuables"))
             {
+                if (heldObject != null)
+                {
+                    heldObject.transform.position -= Shift;
+                }
                 heldObject = interactable;
             }
             else if (interactable.CompareTag("Storage"))
