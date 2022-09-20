@@ -20,6 +20,13 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject objCreditCracks;
     [SerializeField] GameObject objExitCracks;
 
+    [SerializeField] Animator animatorWatchTower;
+
+
+    private void Start()
+    {
+        WatchForPreditors(true);
+    }
     public void ButtonUnHover()
     {
         objDarkness.SetActive(true);
@@ -71,5 +78,10 @@ public class MainMenuController : MonoBehaviour
         objOptionCracks.SetActive(false);
         objCreditCracks.SetActive(false);
         objExitCracks.SetActive(true);
+    }
+
+    void WatchForPreditors(bool isWatching)
+    {
+        animatorWatchTower.SetBool("isWatching", isWatching);
     }
 }
