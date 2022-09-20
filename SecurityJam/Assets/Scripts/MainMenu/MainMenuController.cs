@@ -20,12 +20,19 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject objCreditCracks;
     [SerializeField] GameObject objExitCracks;
 
+    [SerializeField] GameObject objEmerge;
+    [SerializeField] GameObject objTower;
+
     [SerializeField] Animator animatorWatchTower;
+    [SerializeField] Animator animatorHatch;
+    [SerializeField] Animator animatorEmerge;
 
 
     private void Start()
     {
-        WatchForPreditors(true);
+        objEmerge.SetActive(false);
+        objTower.SetActive(false);
+        StartSeeingEyeAnimation();
     }
     public void ButtonUnHover()
     {
@@ -80,8 +87,115 @@ public class MainMenuController : MonoBehaviour
         objExitCracks.SetActive(true);
     }
 
+    #region Start Tower Animation
     void WatchForPreditors(bool isWatching)
     {
         animatorWatchTower.SetBool("isWatching", isWatching);
+    }
+    IEnumerator StartWatchTowerTimer()
+    {
+        float waitForSec = 10.0f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                OpenHatch();
+            }
+
+            yield return null;
+        }
+    }
+    void StartSeeingEyeAnimation()
+    {
+        animatorHatch.SetBool("isOpen", false);
+        animatorHatch.SetBool("isClose", false);
+        animatorHatch.SetBool("isClosed", true);
+        animatorHatch.SetBool("isOpened", false);
+        StartCoroutine(StartWatchTowerTimer());
+    }
+    IEnumerator StartTowerTimer()
+    {
+        float waitForSec = 0.5f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorEmerge.SetBool("isEmerge", false);
+                animatorEmerge.SetBool("isEnd", true);
+                objEmerge.SetActive(false);
+                objTower.SetActive(true);
+                WatchForPreditors(true);
+            }
+            yield return null;
+        }
+    }
+    IEnumerator EmergeTimer()
+    {
+        float waitForSec = 1.0f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorEmerge.SetBool("isStart", false);
+                animatorEmerge.SetBool("isEmerge", true);
+                StartCoroutine(StartTowerTimer());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator StartEmerge()
+    {
+        float waitForSec = 1.0f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                objEmerge.SetActive(true);
+                animatorEmerge.SetBool("isStart", true);
+                animatorEmerge.SetBool("isEmerge", false);
+                animatorEmerge.SetBool("isEnd", false);
+                animatorEmerge.SetBool("isDemerge", false);
+                StartCoroutine(EmergeTimer());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator OpenHatchTimer()
+    {
+        float waitForSec = 0.5f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if(timer > 1f)
+            {
+                animatorHatch.SetBool("isOpen", false);
+                animatorHatch.SetBool("isOpened", true);
+                StartCoroutine(StartEmerge());
+            }
+            yield return null;
+        }
+    }
+    void OpenHatch()
+    {
+        animatorHatch.SetBool("isOpen", true);
+        animatorHatch.SetBool("isClose", false);
+        animatorHatch.SetBool("isClosed", false);
+        animatorHatch.SetBool("isOpened", false);
+        StartCoroutine(OpenHatchTimer());
+    }
+
+    #endregion
+    void CloseHatch()
+    {
+
     }
 }
