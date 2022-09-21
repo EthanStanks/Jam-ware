@@ -52,12 +52,28 @@ public class MainMenuController : MonoBehaviour
     }
     public void ButtonClick(int button)
     {
-        if (button == 0) PlayButtonCracked();
-        else if (button == 1) OptionButtonCracked();
-        else if (button == 2) CreditButtonCracked();
-        else if (button == 3) ExitButtonCracked();
+        if (button == 0) ClickedPlayButton();
+        else if (button == 1) ClickedOptionButton();
+        else if (button == 2) ClickedCreditButton();
+        else if (button == 3) ClickedExitButton();
     }
-
+    void ClickedPlayButton()
+    {
+        PlayButtonCracked();
+        KillTheSeeingEyeAnimation();
+    }
+    void ClickedOptionButton()
+    {
+        OptionButtonCracked();
+    }
+    void ClickedCreditButton()
+    {
+        CreditButtonCracked();
+    }
+    void ClickedExitButton()
+    {
+        ExitButtonCracked();
+    }
     void PlayButtonCracked()
     {
         objPlayCracks.SetActive(true);
@@ -87,6 +103,7 @@ public class MainMenuController : MonoBehaviour
         objExitCracks.SetActive(true);
     }
 
+    // ATTENTION ANIMATION STUFF -> do not change or delete please or else break and ethan sad
     #region Start Tower Animation
     void WatchForPreditors(bool isWatching)
     {
@@ -117,7 +134,7 @@ public class MainMenuController : MonoBehaviour
     }
     IEnumerator StartTowerTimer()
     {
-        float waitForSec = 0.5f;
+        float waitForSec = 1.4f;
         float timer = 0.0f;
         while (timer <= 1f)
         {
@@ -126,6 +143,20 @@ public class MainMenuController : MonoBehaviour
             {
                 animatorEmerge.SetBool("isEmerge", false);
                 animatorEmerge.SetBool("isEnd", true);
+                StartCoroutine(WaitToWatch());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator WaitToWatch()
+    {
+        float waitForSec = 0.1f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
                 objEmerge.SetActive(false);
                 objTower.SetActive(true);
                 WatchForPreditors(true);
@@ -135,7 +166,7 @@ public class MainMenuController : MonoBehaviour
     }
     IEnumerator EmergeTimer()
     {
-        float waitForSec = 1.0f;
+        float waitForSec = 0.1f;
         float timer = 0.0f;
         while (timer <= 1f)
         {
@@ -144,6 +175,8 @@ public class MainMenuController : MonoBehaviour
             {
                 animatorEmerge.SetBool("isStart", false);
                 animatorEmerge.SetBool("isEmerge", true);
+                animatorEmerge.SetBool("isEnd", false);
+                animatorEmerge.SetBool("isDemerge", false);
                 StartCoroutine(StartTowerTimer());
             }
             yield return null;
@@ -151,7 +184,7 @@ public class MainMenuController : MonoBehaviour
     }
     IEnumerator StartEmerge()
     {
-        float waitForSec = 1.0f;
+        float waitForSec = 0.1f;
         float timer = 0.0f;
         while (timer <= 1f)
         {
@@ -194,8 +227,85 @@ public class MainMenuController : MonoBehaviour
     }
 
     #endregion
-    void CloseHatch()
-    {
 
+    #region End Tower Animation
+    void KillTheSeeingEyeAnimation()
+    {
+        animatorWatchTower.SetBool("isWatching", false);
+        StartCoroutine(WaitToDemerge());
     }
+    IEnumerator WaitToDemerge()
+    {
+        float waitForSec = 0.3f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                objTower.SetActive(false);
+                objEmerge.SetActive(true);
+                animatorEmerge.SetBool("isDemerge", false);
+                animatorEmerge.SetBool("isStart", false);
+                animatorEmerge.SetBool("isEmerge", false);
+                animatorEmerge.SetBool("isEnd", true);
+                StartCoroutine(StartDemerge());
+
+            }
+            yield return null;
+        }
+    }
+    IEnumerator StartDemerge()
+    {
+        float waitForSec = 0.1f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorEmerge.SetBool("isDemerge", true);
+                animatorEmerge.SetBool("isEnd", false);
+                StartCoroutine(StartCloseHatch());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator StartCloseHatch()
+    {
+        float waitForSec = 1.6f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorHatch.SetBool("isOpened", true);
+                animatorHatch.SetBool("isOpen", false);
+                animatorHatch.SetBool("isClose", false);
+                animatorHatch.SetBool("isClosed", false);
+                objEmerge.SetActive(false);
+                animatorHatch.SetBool("isClose", true);
+                animatorHatch.SetBool("isOpened", false);
+                StartCoroutine(WaitForClosedHatch());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator WaitForClosedHatch()
+    {
+        float waitForSec = 0.5f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorHatch.SetBool("isClose", false);
+                animatorHatch.SetBool("isClosed", true);
+            }
+            yield return null;
+        }
+    }
+    #endregion
 }
