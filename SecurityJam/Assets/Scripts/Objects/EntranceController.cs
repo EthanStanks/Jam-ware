@@ -16,16 +16,17 @@ public class EntranceController : MonoBehaviour
     [SerializeField] bool spawnRobber;
     [SerializeField] GameObject robberPrefab;
     [SerializeField] public GameObject useGraphic;
-    private bool isGaurdOnTopOfEntrance;
+    private bool isGuardOnTopOfEntrance;
 
     private void Start()
     {
         spriteRender = GetComponentInChildren<SpriteRenderer>();
+        GameManager.instance.lstEntrances.Add(EntranceObject);
     }
     private void Update()
     {
         if (spawnRobber) SpawnRobber();
-        if (isGaurdOnTopOfEntrance && isBroken) NeedsRepair();
+        if (isGuardOnTopOfEntrance && isBroken) NeedsRepair();
         if (isBroken) BrokeEntrance();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,7 +34,7 @@ public class EntranceController : MonoBehaviour
         if (isBroken && collision.gameObject.tag == "Player")
         {
             useGraphic.GetComponent<SpriteRenderer>().enabled = true;
-            isGaurdOnTopOfEntrance = true;
+            isGuardOnTopOfEntrance = true;
         }
     }
 
@@ -42,7 +43,7 @@ public class EntranceController : MonoBehaviour
         if (isBroken && collision.gameObject.tag == "Player")
         {
             useGraphic.GetComponent<SpriteRenderer>().enabled = false;
-            isGaurdOnTopOfEntrance = false;
+            isGuardOnTopOfEntrance = false;
         }
     }
     void RepairEntrance()
@@ -72,12 +73,14 @@ public class EntranceController : MonoBehaviour
         isBroken = true;
         EntranceObject.tag = "Broken";
     }
-    void SpawnRobber()
+    public void SpawnRobber()
     {
         spawnRobber = false;
         BrokeEntrance();
-        GameObject robber = Instantiate(robberPrefab);
-        robber.transform.position = new Vector3(robber.transform.position.x, robber.transform.position.y - 1);
+        GameObject Robber = Instantiate(GameManager.instance.RobberPrefab, transform.position, transform.rotation);
+        Robber.name = "Robber";
+        Robber.GetComponent<theft>().isCaught = false;
+        GameManager.instance.lstRobbers.Add(Robber);
     }
     void NeedsRepair()
     {

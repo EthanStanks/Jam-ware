@@ -218,10 +218,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usedStairs: 0
   robberObj: {fileID: 6362606353583608221}
+  robberRenderer: {fileID: 6362606353433700228}
   robbingSpeed: 2
   nothing: {fileID: 1538872457993151595}
   full: {fileID: 7248320976377965878}
   isCaught: 0
+  stairsVertical: 0
+  stairsHorizontal: 0
+  myJewel: {fileID: 0}
 --- !u!50 &6221501503592121565
 Rigidbody2D:
   serializedVersion: 4
