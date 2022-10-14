@@ -9,27 +9,44 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public GameObject PlayerPrefab; // player obj
     [SerializeField] public GameObject RobberPrefab; //robber obj
-    public List<GameObject> lstRobbers; // list of robbers obj
-    public List<GameObject> lstEntrances; // list of entrance obj
-    public List<GameObject> lstSecurityCameras; // list of camera obj
-    int PlayerLives = 1;
+    public List<GameObject> lstRobbers = new(); // list of robbers obj
+    public List<GameObject> lstEntrances = new(); // list of entrance obj
+    public List<GameObject> lstSecurityCameras = new(); // list of camera obj
+    [SerializeField] int PlayerLives = 1;
     int intCurrentMap; // current map int
-    int timer;
+    [SerializeField] public int timer;
     bool blTimerEnded; // timer ended bool
+    bool timing = false;
+    bool canSpawn = false;
 
+    public void Awake()
+    {
+        instance = this;
+    }
 
     // start game func
     private void Start()
     {
         timer = 0;
         blTimerEnded = false;
+        timing = true;
     }
 
     private void Update()
     {
-        if (timer % 5 == 0)
+        if (timing)
         {
+            timing = false;
+            StartCoroutine(OneSecBruh());
+        }
+        if (timer % 5 == 0 && timer != 0 && canSpawn)
+        {
+            canSpawn = false;
             SpawnRobber();
+        }
+        if (timer % 5 == 1)
+        {
+            canSpawn = true;
         }
         if (PlayerLives == 0)
         {
@@ -47,19 +64,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
     }
 
-    IEnumerator OneSecBruh(int num)
+    IEnumerator OneSecBruh()
     {
         yield return new WaitForSeconds(1);
-        num++;
-    }
-
-    // start game timer func
-    void StartGameTimer()
-    {
-        while (blTimerEnded == false)
-        {
-            OneSecBruh(timer);
-        }
+        timer++;
+        timing = true;
     }
 
     // won game func
@@ -85,7 +94,11 @@ public class GameManager : MonoBehaviour
     {
         System.Random rand = new System.Random();
         int num = rand.Next(lstEntrances.Count);
-        lstEntrances[num].GetComponent<EntranceController>().SpawnRobber();
+        if (num == 0)
+        {
+            SpawnRobber();
+        }
+        lstEntrances[num].GetComponent<EntranceController>().spawnRobber = true;
     }
 }
 

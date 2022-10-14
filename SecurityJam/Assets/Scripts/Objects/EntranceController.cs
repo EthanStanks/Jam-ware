@@ -13,7 +13,7 @@ public class EntranceController : MonoBehaviour
     [SerializeField] Sprite brokenWindowSprite;
     [SerializeField] Sprite normalDoorSprite;
     [SerializeField] Sprite brokenDoorSprite;
-    [SerializeField] bool spawnRobber;
+    [SerializeField] public bool spawnRobber;
     [SerializeField] GameObject robberPrefab;
     [SerializeField] public GameObject useGraphic;
     private bool isGuardOnTopOfEntrance;
@@ -21,18 +21,22 @@ public class EntranceController : MonoBehaviour
     private void Start()
     {
         spriteRender = GetComponentInChildren<SpriteRenderer>();
+        StartCoroutine(Late(2));
     }
 
     IEnumerator Late(float wait)
     {
         yield return new WaitForSeconds(wait);
         GameManager.instance.lstEntrances.Add(EntranceObject);
-
     }
 
     private void Update()
     {
-        if (spawnRobber) SpawnRobber();
+        if (spawnRobber)
+        {
+            spawnRobber = false;
+            SpawnRobber();
+        }
         if (isGuardOnTopOfEntrance && isBroken) NeedsRepair();
         if (isBroken) BrokeEntrance();
     }
