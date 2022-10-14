@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField] float fltAnimationStartDelay;
     [SerializeField] GameObject objDarkness;
     [SerializeField] GameObject objPlayDarkness;
     [SerializeField] GameObject objOptionDarkness;
     [SerializeField] GameObject objCreditDarkness;
     [SerializeField] GameObject objExitDarkness;
 
-    [SerializeField] GameObject objPlayButton;
-    [SerializeField] GameObject objOptionButton;
-    [SerializeField] GameObject objCreditButton;
-    [SerializeField] GameObject objExitButton;
+    //[SerializeField] GameObject objPlayButton;
+    //[SerializeField] GameObject objOptionButton;
+    //[SerializeField] GameObject objCreditButton;
+    //[SerializeField] GameObject objExitButton;
 
     [SerializeField] GameObject objPlayCracks;
     [SerializeField] GameObject objOptionCracks;
@@ -26,6 +27,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] Animator animatorWatchTower;
     [SerializeField] Animator animatorHatch;
     [SerializeField] Animator animatorEmerge;
+    [SerializeField] Animator animatorGarage;
 
 
     private void Start()
@@ -111,7 +113,7 @@ public class MainMenuController : MonoBehaviour
     }
     IEnumerator StartWatchTowerTimer()
     {
-        float waitForSec = 10.0f;
+        float waitForSec = fltAnimationStartDelay;
         float timer = 0.0f;
         while (timer <= 1f)
         {
@@ -303,6 +305,72 @@ public class MainMenuController : MonoBehaviour
             {
                 animatorHatch.SetBool("isClose", false);
                 animatorHatch.SetBool("isClosed", true);
+                StartCoroutine(StartGarageDoor());
+            }
+            yield return null;
+        }
+    }
+    #endregion
+
+    #region Garage Door Animation
+    IEnumerator StartGarageDoor()
+    {
+        float waitForSec = 1;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorGarage.SetBool("isClosed", false);
+                animatorGarage.SetBool("isOpen", true);
+                StartCoroutine(GarageDoorOpened());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator GarageDoorOpened()
+    {
+        float waitForSec = 0.8f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorGarage.SetBool("isOpen", false);
+                animatorGarage.SetBool("isOpened", true);
+            }
+            yield return null;
+        }
+    }
+    IEnumerator CloseGarageDoor()
+    {
+        float waitForSec = 0.6f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorGarage.SetBool("isOpened", false);
+                animatorGarage.SetBool("isClose", true);
+                StartCoroutine(GarageDoorClosed());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator GarageDoorClosed()
+    {
+        float waitForSec = 0.8f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorGarage.SetBool("isClose", false);
+                animatorGarage.SetBool("isClosed", true);
             }
             yield return null;
         }
