@@ -21,8 +21,15 @@ public class EntranceController : MonoBehaviour
     private void Start()
     {
         spriteRender = GetComponentInChildren<SpriteRenderer>();
-        GameManager.instance.lstEntrances.Add(EntranceObject);
     }
+
+    IEnumerator Late(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        GameManager.instance.lstEntrances.Add(EntranceObject);
+
+    }
+
     private void Update()
     {
         if (spawnRobber) SpawnRobber();
