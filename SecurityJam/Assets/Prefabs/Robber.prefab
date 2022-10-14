@@ -223,8 +223,8 @@ MonoBehaviour:
   nothing: {fileID: 1538872457993151595}
   full: {fileID: 7248320976377965878}
   isCaught: 0
-  stairsVertical: 0
-  stairsHorizontal: 0
+  stairsVertical: 5
+  stairsHorizontal: 4.5
   myJewel: {fileID: 0}
 --- !u!50 &6221501503592121565
 Rigidbody2D:

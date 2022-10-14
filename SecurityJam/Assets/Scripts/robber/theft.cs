@@ -68,13 +68,32 @@ public class theft : MonoBehaviour
         }
         else if (hitter.gameObject.CompareTag("Storage"))
         {
-            if (hasGem == false)
+            if (hasGem == false && hitter.gameObject.GetComponent<Storage>().broken == false)
             {
                 hasGem = true;
                 nothing.SetActive(false);
                 full.SetActive(true);
                 myJewel = hitter.gameObject.GetComponent<Storage>().jewel;
                 jewelType = hitter.gameObject.GetComponent<Storage>().jewelType;
+            }
+        }
+        else if (hitter.gameObject.CompareTag("Entrance"))
+        {
+            if (hasGem)
+            {
+                hitter.gameObject.GetComponent<EntranceController>().BrokeEntrance();
+                Destroy(robberObj);
+                GameManager.instance.PlayerLives--;
+                Debug.Log("I stole it");
+            }
+        }
+        else if (hitter.gameObject.CompareTag("Broken"))
+        {
+            if (hasGem)
+            {
+                Destroy(robberObj);
+                GameManager.instance.PlayerLives--;
+                Debug.Log("I stole it");
             }
         }
         else 

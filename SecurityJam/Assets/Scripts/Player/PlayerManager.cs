@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] public GameObject heldObject;
     Vector3 Shift = new Vector3(0, 1.5f, 0);
+    bool walkBack = false;
 
     private void Start()
     {
@@ -38,6 +39,19 @@ public class PlayerManager : MonoBehaviour
         {
             heldObject.transform.position = playerGameObj.transform.position;
             heldObject.transform.position += Shift;
+        }
+        if (walkBack == true)
+        {
+            if (playerGameObj.transform.position.x > 0)
+            {
+                playerGameObj.transform.position += Vector3.right * -guardSpeed * Time.deltaTime;
+                guardAnimator.SetBool("isWalking", true);
+            }
+            if (playerGameObj.transform.position.x < 0)
+            {
+                playerGameObj.transform.position += Vector3.right * guardSpeed * Time.deltaTime;
+                guardAnimator.SetBool("isWalking", true);
+            }
         }
     }
 
@@ -90,11 +104,16 @@ public class PlayerManager : MonoBehaviour
         {
             interactable = collision.gameObject;
         }
+        if (collision.gameObject.CompareTag("Untagged"))
+        {
+            walkBack = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-            interactable = null;
+        interactable = null;
+        walkBack = false;
     }
 
     void Interact()//context sensitive interaction

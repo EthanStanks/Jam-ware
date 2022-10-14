@@ -7,7 +7,7 @@ public class EntranceController : MonoBehaviour
     [SerializeField] GameObject EntranceObject;
     [SerializeField] bool isWindow;
     [SerializeField] bool isDoor;
-    [SerializeField] bool isBroken;
+    [SerializeField] public bool isBroken;
     SpriteRenderer spriteRender;
     [SerializeField] Sprite normalWindowSprite;
     [SerializeField] Sprite brokenWindowSprite;
@@ -71,7 +71,7 @@ public class EntranceController : MonoBehaviour
         EntranceObject.tag = "Entrance";
         useGraphic.GetComponent<SpriteRenderer>().enabled = false;
     }
-    void BrokeEntrance()
+    public void BrokeEntrance()
     {
         if (isWindow)
         {
@@ -88,7 +88,11 @@ public class EntranceController : MonoBehaviour
     {
         spawnRobber = false;
         BrokeEntrance();
-        GameObject Robber = Instantiate(GameManager.instance.RobberPrefab, transform.position, transform.rotation);
+        Vector3 here = new Vector3();
+        here.z = 0;
+        here.y = EntranceObject.transform.position.y - 0.8f;
+        here.x = EntranceObject.transform.position.x;
+        GameObject Robber = Instantiate(GameManager.instance.RobberPrefab, here, transform.rotation);
         Robber.name = "Robber";
         Robber.GetComponent<theft>().isCaught = false;
         GameManager.instance.lstRobbers.Add(Robber);
