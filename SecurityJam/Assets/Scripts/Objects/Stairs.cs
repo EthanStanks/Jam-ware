@@ -26,6 +26,7 @@ public class Stairs : MonoBehaviour
         {
             //canUse = true;
             useGraphic.GetComponent<SpriteRenderer>().enabled = true;
+            useGraphic.GetComponent<SpriteMask>().enabled = true;
         }
     }
 
@@ -35,6 +36,7 @@ public class Stairs : MonoBehaviour
         {
             //canUse = false;
             useGraphic.GetComponent<SpriteRenderer>().enabled = false;
+            useGraphic.GetComponent<SpriteMask>().enabled = false;
         }
     }
 

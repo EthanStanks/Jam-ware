@@ -45,6 +45,7 @@ public class EntranceController : MonoBehaviour
         if (isBroken && collision.gameObject.tag == "Player")
         {
             useGraphic.GetComponent<SpriteRenderer>().enabled = true;
+            useGraphic.GetComponent<SpriteMask>().enabled = true;
             isGuardOnTopOfEntrance = true;
         }
     }
@@ -54,6 +55,7 @@ public class EntranceController : MonoBehaviour
         if (isBroken && collision.gameObject.tag == "Player")
         {
             useGraphic.GetComponent<SpriteRenderer>().enabled = false;
+            useGraphic.GetComponent<SpriteMask>().enabled = false;
             isGuardOnTopOfEntrance = false;
         }
     }
@@ -70,6 +72,7 @@ public class EntranceController : MonoBehaviour
         isBroken = false;
         EntranceObject.tag = "Entrance";
         useGraphic.GetComponent<SpriteRenderer>().enabled = false;
+        useGraphic.GetComponent<SpriteMask>().enabled = false;
     }
     public void BrokeEntrance()
     {

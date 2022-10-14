@@ -44,6 +44,7 @@ public class Storage : MonoBehaviour
         if (hitter.gameObject.tag == "Player" && broken == true && hitter.GetComponent<PlayerManager>().heldObject.GetComponent<Valuables>().jewelType == jewelType)
         {
             useGraphic.GetComponent<SpriteRenderer>().enabled = true;
+            useGraphic.GetComponent<SpriteMask>().enabled = true;
         }
     }
 
@@ -53,6 +54,7 @@ public class Storage : MonoBehaviour
         {
             //canUse = false;
             useGraphic.GetComponent<SpriteRenderer>().enabled = false;
+            useGraphic.GetComponent<SpriteMask>().enabled = false;
         }
     }
 

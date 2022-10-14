@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int PlayerLives = 1;
     int intCurrentMap; // current map int
     [SerializeField] public int timer;
-    bool blTimerEnded; // timer ended bool
+    //bool blTimerEnded; // timer ended bool
     bool timing = false;
     bool canSpawn = false;
     [SerializeField] GameObject LoseScreen;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         timer = 0;
-        blTimerEnded = false;
+        //blTimerEnded = false;
         timing = true;
     }
 
