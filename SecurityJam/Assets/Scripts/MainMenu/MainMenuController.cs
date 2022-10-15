@@ -4,33 +4,50 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
+    [Header("Floats")]
     [SerializeField] float fltAnimationStartDelay;
+    [Space(20)]
+    bool isPlayAllowed;
+    [Header("Game Objects")]
     [SerializeField] GameObject objDarkness;
     [SerializeField] GameObject objPlayLight;
     [SerializeField] GameObject objOptionLight;
     [SerializeField] GameObject objCreditLight;
     [SerializeField] GameObject objExitLight;
-
+    [Space(10)]
     [SerializeField] GameObject objPlayCracks;
     [SerializeField] GameObject objOptionCracks;
     [SerializeField] GameObject objCreditCracks;
     [SerializeField] GameObject objExitCracks;
-
+    [Space(10)]
     [SerializeField] GameObject objEmerge;
     [SerializeField] GameObject objTower;
-
+    [Space(10)]
+    [SerializeField] Camera camMain;
+    [Space(20)]
+    [Header("Animators")]
     [SerializeField] Animator animatorWatchTower;
     [SerializeField] Animator animatorHatch;
     [SerializeField] Animator animatorEmerge;
     [SerializeField] Animator animatorGarage;
-
+    [Space(10)]
     [SerializeField] Animator animatorLeftOfficeLight;
     [SerializeField] Animator animatorRightOfficeLight;
     float fltFlickRate = 2.25f;
     float fltNextFlick;
+    [Space(10)]
+    [SerializeField] Animator animatorCar;
+    [SerializeField] Animator animatorCamera;
+
+
 
     private void Start()
     {
+        animatorCamera.SetBool("isMainMenu", true);
+        animatorCamera.SetBool("isFollowCar", false);
+        animatorCamera.SetBool("isLevelSelect", false);
+        camMain.orthographicSize = 1.310894f;
+        isPlayAllowed = false;
         objEmerge.SetActive(false);
         objTower.SetActive(false);
         StartSeeingEyeAnimation();
@@ -66,20 +83,36 @@ public class MainMenuController : MonoBehaviour
     }
     void ClickedPlayButton()
     {
-        PlayButtonCracked();
-        KillTheSeeingEyeAnimation();
+        if (isPlayAllowed)
+        {
+            PlayButtonCracked();
+            KillTheSeeingEyeAnimation();
+            isPlayAllowed = false;
+        }
     }
     void ClickedOptionButton()
     {
-        OptionButtonCracked();
+        if (isPlayAllowed)
+        {
+            OptionButtonCracked();
+            isPlayAllowed = false;
+        }
     }
     void ClickedCreditButton()
     {
-        CreditButtonCracked();
+        if (isPlayAllowed)
+        {
+            CreditButtonCracked();
+            isPlayAllowed = false;
+        }
     }
     void ClickedExitButton()
     {
-        ExitButtonCracked();
+        if (isPlayAllowed)
+        {
+            ExitButtonCracked();
+            isPlayAllowed = false;
+        }
     }
     void PlayButtonCracked()
     {
@@ -111,6 +144,7 @@ public class MainMenuController : MonoBehaviour
     }
     #endregion
 
+    #region Light Flickering For Office Building
     void FlickerLights()
     {
         if (Time.time > fltNextFlick)
@@ -132,8 +166,8 @@ public class MainMenuController : MonoBehaviour
     {
         // if 0 itll turn the left light of the office on or off based off the bool
         // else if 1 itll turn the right light of the office on or off based off the bool
-        if(side == 0) animatorLeftOfficeLight.SetBool("isOn", isOn);
-        else if(side == 1) animatorRightOfficeLight.SetBool("isOn", isOn);
+        if (side == 0) animatorLeftOfficeLight.SetBool("isOn", isOn);
+        else if (side == 1) animatorRightOfficeLight.SetBool("isOn", isOn);
     }
     IEnumerator StopFlicker()
     {
@@ -149,11 +183,14 @@ public class MainMenuController : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
+
     // ATTENTION ANIMATION STUFF -> do not change or delete please or else break and ethan sad
     #region Start Tower Animation
     void WatchForPreditors(bool isWatching)
     {
         animatorWatchTower.SetBool("isWatching", isWatching);
+        isPlayAllowed = true;
     }
     IEnumerator StartWatchTowerTimer()
     {
@@ -385,6 +422,7 @@ public class MainMenuController : MonoBehaviour
                 animatorGarage.SetBool("isOpen", false);
                 animatorGarage.SetBool("isOpened", true);
                 TurnOnOffOfficeLights(true, 1);
+                StartCoroutine(StartCar());
             }
             yield return null;
         }
@@ -417,6 +455,62 @@ public class MainMenuController : MonoBehaviour
                 animatorGarage.SetBool("isClose", false);
                 animatorGarage.SetBool("isClosed", true);
                 TurnOnOffOfficeLights(false, 1);
+            }
+            yield return null;
+        }
+    }
+    #endregion
+
+    #region Start of Car
+    IEnumerator StartCar()
+    {
+        float waitForSec = 0.2f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorCar.SetBool("isGarage", false);
+                animatorCar.SetBool("isDriving", true);
+                animatorCamera.SetBool("isFollowCar", true);
+                animatorCamera.SetBool("isMainMenu", false);
+                StartCoroutine(HaveCarWaitForLevel());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator HaveCarWaitForLevel()
+    {
+        float waitForSec = 2;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorCar.SetBool("isDriving", false);
+                animatorCar.SetBool("isWaiting", true);
+                animatorCamera.SetBool("isFollowCar", false);
+                animatorCamera.SetBool("isZoomOut", true);
+                //camMain.orthographicSize = 2f;
+                StartCoroutine(ZoomOutCameraToLevelSelect());
+            }
+            yield return null;
+        }
+    }
+    IEnumerator ZoomOutCameraToLevelSelect()
+    {
+        float waitForSec = 0.7f;
+        float timer = 0.0f;
+        while (timer <= 1f)
+        {
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                animatorCamera.SetBool("isLevelSelect", true);
+                animatorCamera.SetBool("isZoomOut", false);
+                camMain.orthographicSize = 3.56953f;
             }
             yield return null;
         }
