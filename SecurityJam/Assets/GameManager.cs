@@ -12,12 +12,13 @@ public class GameManager : MonoBehaviour
     public List<GameObject> lstRobbers = new(); // list of robbers obj
     public List<GameObject> lstEntrances = new(); // list of entrance obj
     public List<GameObject> lstSecurityCameras = new(); // list of camera obj
-    [SerializeField] int PlayerLives = 1;
+    [SerializeField] public int PlayerLives = 1;
     int intCurrentMap; // current map int
     [SerializeField] public int timer;
-    bool blTimerEnded; // timer ended bool
+    //bool blTimerEnded; // timer ended bool
     bool timing = false;
     bool canSpawn = false;
+    [SerializeField] GameObject LoseScreen;
 
     public void Awake()
     {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         timer = 0;
-        blTimerEnded = false;
+        //blTimerEnded = false;
         timing = true;
     }
 
@@ -39,12 +40,12 @@ public class GameManager : MonoBehaviour
             timing = false;
             StartCoroutine(OneSecBruh());
         }
-        if (timer % 5 == 0 && timer != 0 && canSpawn)
+        if (timer % 28 == 0 && timer != 0 && canSpawn)
         {
             canSpawn = false;
             SpawnRobber();
         }
-        if (timer % 5 == 1)
+        if (timer % 28 == 1)
         {
             canSpawn = true;
         }
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             LostGame();
         }
-        if (blTimerEnded == true)
+        if (timer > 120)
         {
             WonGame();
         }
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
     void LostGame()
     {
         Debug.Log("You suck");
+        LoseScreen.SetActive(true);
         EndGame();
     }
     // escaped func

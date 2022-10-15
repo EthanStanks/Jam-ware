@@ -24,6 +24,7 @@ public class Valuables : MonoBehaviour
         if (hitter.gameObject.tag == "Player")
         {
             useGraphic.GetComponent<SpriteRenderer>().enabled = true;
+            useGraphic.GetComponent<SpriteMask>().enabled = true;
         }
     }
 
@@ -33,6 +34,7 @@ public class Valuables : MonoBehaviour
         {
             //canUse = false;
             useGraphic.GetComponent<SpriteRenderer>().enabled = false;
+            useGraphic.GetComponent<SpriteMask>().enabled = false;
         }
     }
 

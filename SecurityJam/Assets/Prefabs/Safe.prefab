@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9023060588770869133}
   m_Layer: 0
   m_Name: Safe
-  m_TagString: Valuables
+  m_TagString: Storage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,11 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d510b55f3bf268f439b3937f61654b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  broken: 0
   Renderer: {fileID: 9023060588770869135}
   open: {fileID: 398142466, guid: bebe875a6f1244144b6f65d4100c9398, type: 3}
   closed: {fileID: 469899907, guid: bebe875a6f1244144b6f65d4100c9398, type: 3}
-  jewel: {fileID: 5197805874428250064, guid: 470dd80b488422e41a05ca3a92ad7f2d, type: 3}
+  jewel: {fileID: 0}
   useGraphic: {fileID: 5489235628205180974}
+  jewelType: Diamond
 --- !u!61 &9023060588770869170
 BoxCollider2D:
   m_ObjectHideFlags: 0

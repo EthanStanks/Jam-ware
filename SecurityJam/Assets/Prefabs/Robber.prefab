@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: b9bae01f83a0b1b47b1c1fe47e66885a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 259856833, guid: 8064a81c16887f644a7176543f08b9eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -223,8 +223,8 @@ MonoBehaviour:
   nothing: {fileID: 1538872457993151595}
   full: {fileID: 7248320976377965878}
   isCaught: 0
-  stairsVertical: 0
-  stairsHorizontal: 0
+  stairsVertical: 5
+  stairsHorizontal: 4.5
   myJewel: {fileID: 0}
 --- !u!50 &6221501503592121565
 Rigidbody2D:
@@ -335,7 +335,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 95f47632c59a8f645b541c63e6e4cf1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
