@@ -24,8 +24,9 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] Animator animatorEmerge;
     [SerializeField] Animator animatorGarage;
 
-    [SerializeField] Animator animatorOfficeLights;
-    float fltFlickRate = 0.5f;
+    [SerializeField] Animator animatorLeftOfficeLight;
+    [SerializeField] Animator animatorRightOfficeLight;
+    float fltFlickRate = 2.25f;
     float fltNextFlick;
 
     private void Start()
@@ -38,6 +39,8 @@ public class MainMenuController : MonoBehaviour
     {
         FlickerLights();
     }
+
+    #region Button Stuff
     public void ButtonUnHover()
     {
         objDarkness.SetActive(true);
@@ -106,35 +109,44 @@ public class MainMenuController : MonoBehaviour
         objCreditCracks.SetActive(false);
         objExitCracks.SetActive(true);
     }
+    #endregion
 
     void FlickerLights()
     {
         if (Time.time > fltNextFlick)
         {
             fltNextFlick = Time.time + fltFlickRate;
-            int rng = (int)Random.Range(0, 3);
-            RandomLight(rng);
+            RandomFlicker();
         }
     }
-    void RandomLight(float rng)
+    void RandomFlicker()
     {
-        if (rng <= 0.99f)
+        float rng = Random.Range(0, 3);
+        if (rng <= 1.50f)
         {
-            animatorOfficeLights.SetBool("isDark", true);
-            animatorOfficeLights.SetBool("isLeft", false);
-            animatorOfficeLights.SetBool("isRight", false);
+            TurnOnOffOfficeLights(true, 0);
+            StartCoroutine(StopFlicker());
         }
-        else if (rng <= 1.99f)
+    }
+    void TurnOnOffOfficeLights(bool isOn, int side)
+    {
+        // if 0 itll turn the left light of the office on or off based off the bool
+        // else if 1 itll turn the right light of the office on or off based off the bool
+        if(side == 0) animatorLeftOfficeLight.SetBool("isOn", isOn);
+        else if(side == 1) animatorRightOfficeLight.SetBool("isOn", isOn);
+    }
+    IEnumerator StopFlicker()
+    {
+        float waitForSec = 0.5f;
+        float timer = 0.0f;
+        while (timer <= 1f)
         {
-            animatorOfficeLights.SetBool("isDark", false);
-            animatorOfficeLights.SetBool("isLeft", true);
-            animatorOfficeLights.SetBool("isRight", false);
-        }
-        else
-        {
-            animatorOfficeLights.SetBool("isDark", false);
-            animatorOfficeLights.SetBool("isLeft", false);
-            animatorOfficeLights.SetBool("isRight", true);
+            timer += Time.deltaTime / waitForSec;
+            if (timer > 1f)
+            {
+                TurnOnOffOfficeLights(false, 0);
+            }
+            yield return null;
         }
     }
     // ATTENTION ANIMATION STUFF -> do not change or delete please or else break and ethan sad
@@ -372,6 +384,7 @@ public class MainMenuController : MonoBehaviour
             {
                 animatorGarage.SetBool("isOpen", false);
                 animatorGarage.SetBool("isOpened", true);
+                TurnOnOffOfficeLights(true, 1);
             }
             yield return null;
         }
@@ -403,6 +416,7 @@ public class MainMenuController : MonoBehaviour
             {
                 animatorGarage.SetBool("isClose", false);
                 animatorGarage.SetBool("isClosed", true);
+                TurnOnOffOfficeLights(false, 1);
             }
             yield return null;
         }
