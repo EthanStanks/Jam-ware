@@ -6,15 +6,10 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] float fltAnimationStartDelay;
     [SerializeField] GameObject objDarkness;
-    [SerializeField] GameObject objPlayDarkness;
-    [SerializeField] GameObject objOptionDarkness;
-    [SerializeField] GameObject objCreditDarkness;
-    [SerializeField] GameObject objExitDarkness;
-
-    //[SerializeField] GameObject objPlayButton;
-    //[SerializeField] GameObject objOptionButton;
-    //[SerializeField] GameObject objCreditButton;
-    //[SerializeField] GameObject objExitButton;
+    [SerializeField] GameObject objPlayLight;
+    [SerializeField] GameObject objOptionLight;
+    [SerializeField] GameObject objCreditLight;
+    [SerializeField] GameObject objExitLight;
 
     [SerializeField] GameObject objPlayCracks;
     [SerializeField] GameObject objOptionCracks;
@@ -29,6 +24,9 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] Animator animatorEmerge;
     [SerializeField] Animator animatorGarage;
 
+    [SerializeField] Animator animatorOfficeLights;
+    float fltFlickRate = 0.5f;
+    float fltNextFlick;
 
     private void Start()
     {
@@ -36,21 +34,25 @@ public class MainMenuController : MonoBehaviour
         objTower.SetActive(false);
         StartSeeingEyeAnimation();
     }
+    private void Update()
+    {
+        FlickerLights();
+    }
     public void ButtonUnHover()
     {
         objDarkness.SetActive(true);
-        objPlayDarkness.SetActive(false);
-        objOptionDarkness.SetActive(false);
-        objCreditDarkness.SetActive(false);
-        objExitDarkness.SetActive(false);
+        objPlayLight.SetActive(false);
+        objOptionLight.SetActive(false);
+        objCreditLight.SetActive(false);
+        objExitLight.SetActive(false);
     }
     public void ButtonHover(int button)
     {
         objDarkness.SetActive(false);
-        if (button == 0) objPlayDarkness.SetActive(true);
-        else if (button == 1) objOptionDarkness.SetActive(true);
-        else if (button == 2) objCreditDarkness.SetActive(true);
-        else if (button == 3) objExitDarkness.SetActive(true);
+        if (button == 0) objPlayLight.SetActive(true);
+        else if (button == 1) objOptionLight.SetActive(true);
+        else if (button == 2) objCreditLight.SetActive(true);
+        else if (button == 3) objExitLight.SetActive(true);
     }
     public void ButtonClick(int button)
     {
@@ -105,6 +107,36 @@ public class MainMenuController : MonoBehaviour
         objExitCracks.SetActive(true);
     }
 
+    void FlickerLights()
+    {
+        if (Time.time > fltNextFlick)
+        {
+            fltNextFlick = Time.time + fltFlickRate;
+            int rng = (int)Random.Range(0, 3);
+            RandomLight(rng);
+        }
+    }
+    void RandomLight(float rng)
+    {
+        if (rng <= 0.99f)
+        {
+            animatorOfficeLights.SetBool("isDark", true);
+            animatorOfficeLights.SetBool("isLeft", false);
+            animatorOfficeLights.SetBool("isRight", false);
+        }
+        else if (rng <= 1.99f)
+        {
+            animatorOfficeLights.SetBool("isDark", false);
+            animatorOfficeLights.SetBool("isLeft", true);
+            animatorOfficeLights.SetBool("isRight", false);
+        }
+        else
+        {
+            animatorOfficeLights.SetBool("isDark", false);
+            animatorOfficeLights.SetBool("isLeft", false);
+            animatorOfficeLights.SetBool("isRight", true);
+        }
+    }
     // ATTENTION ANIMATION STUFF -> do not change or delete please or else break and ethan sad
     #region Start Tower Animation
     void WatchForPreditors(bool isWatching)
@@ -210,7 +242,7 @@ public class MainMenuController : MonoBehaviour
         while (timer <= 1f)
         {
             timer += Time.deltaTime / waitForSec;
-            if(timer > 1f)
+            if (timer > 1f)
             {
                 animatorHatch.SetBool("isOpen", false);
                 animatorHatch.SetBool("isOpened", true);

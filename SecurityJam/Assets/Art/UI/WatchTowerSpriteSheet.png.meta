@@ -119,9 +119,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 2
         y: 0
-        width: 30
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -140,9 +140,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 38
         y: 0
-        width: 30
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -161,9 +161,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 73
+        x: 74
         y: 0
-        width: 36
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -203,9 +203,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 148
+        x: 146
         y: 0
-        width: 30
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -224,9 +224,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 183
+        x: 182
         y: 0
-        width: 33
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -266,9 +266,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 256
+        x: 254
         y: 0
-        width: 30
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -287,9 +287,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 292
+        x: 290
         y: 0
-        width: 30
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -350,9 +350,9 @@ TextureImporter:
       name: WatchTowerSpriteSheet_11
       rect:
         serializedVersion: 2
-        x: 400
+        x: 398
         y: 0
-        width: 30
+        width: 34
         height: 54
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
