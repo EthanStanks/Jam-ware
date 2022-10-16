@@ -493,10 +493,21 @@ public class MainMenuController : MonoBehaviour
                 animatorCar.SetBool("isWaiting", true);
                 animatorCamera.SetBool("isFollowCar", false);
                 animatorCamera.SetBool("isZoomOut", true);
-                //camMain.orthographicSize = 2f;
                 StartCoroutine(ZoomOutCameraToLevelSelect());
             }
             yield return null;
+        }
+    }
+    IEnumerator CameraZoomOut()
+    {
+        float time = 2.0f;
+        float steps = 120;
+
+        for (float f = 0; f <= 1; f += time / steps)
+        {
+            camMain.orthographicSize = Mathf.Lerp(1.310894f, 3.56953f, f);
+
+            yield return new WaitForSeconds(time / steps);
         }
     }
     IEnumerator ZoomOutCameraToLevelSelect()
@@ -510,7 +521,9 @@ public class MainMenuController : MonoBehaviour
             {
                 animatorCamera.SetBool("isLevelSelect", true);
                 animatorCamera.SetBool("isZoomOut", false);
-                camMain.orthographicSize = 3.56953f;
+                //camMain.orthographicSize = 3.56953f;
+                StartCoroutine(CameraZoomOut());
+
             }
             yield return null;
         }
