@@ -2413,7 +2413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61665040c1d8ca4ba2c2fcccc5e9816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fltAnimationStartDelay: 5
+  fltAnimationStartDelay: 2
   objDarkness: {fileID: 997625255}
   objPlayLight: {fileID: 899290352}
   objOptionLight: {fileID: 1270447947}
