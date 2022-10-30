@@ -8,6 +8,17 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] float fltAnimationStartDelay;
     [Space(20)]
     bool isPlayAllowed;
+    [Header("Buttons")]
+    [SerializeField] GameObject buttonPlay;
+    [SerializeField] GameObject buttonOptions;
+    [SerializeField] GameObject buttonCredits;
+    [SerializeField] GameObject buttonExit;
+    [SerializeField] GameObject buttonLevelOne;
+    [SerializeField] GameObject buttonLevelTwo;
+    [SerializeField] GameObject buttonLevelThree;
+    [SerializeField] GameObject buttonLevelFour;
+    [SerializeField] GameObject buttonLeaveLevelSelect;
+    [Space(20)]
     [Header("Game Objects")]
     [SerializeField] GameObject objDarkness;
     [SerializeField] GameObject objPlayLight;
@@ -43,6 +54,7 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
+        ButtonVisability(true);
         animatorCamera.SetBool("isMainMenu", true);
         animatorCamera.SetBool("isFollowCar", false);
         animatorCamera.SetBool("isLevelSelect", false);
@@ -58,6 +70,23 @@ public class MainMenuController : MonoBehaviour
     }
 
     #region Button Stuff
+    void ButtonVisability(bool isShown)
+    {
+        buttonPlay.SetActive(isShown);
+        buttonOptions.SetActive(isShown);
+        buttonCredits.SetActive(isShown);
+        buttonExit.SetActive(isShown);
+
+        buttonLevelOne.SetActive(!isShown);
+        buttonLevelTwo.SetActive(!isShown);
+        buttonLevelThree.SetActive(!isShown);
+        buttonLevelFour.SetActive(!isShown);
+        buttonLeaveLevelSelect.SetActive(!isShown);
+    }
+    public void LeaveLevelSelect()
+    {
+        ButtonVisability(true);
+    }
     public void ButtonUnHover()
     {
         objDarkness.SetActive(true);
@@ -142,6 +171,8 @@ public class MainMenuController : MonoBehaviour
         objCreditCracks.SetActive(false);
         objExitCracks.SetActive(true);
     }
+
+    
     #endregion
 
     #region Light Flickering For Office Building
@@ -523,6 +554,7 @@ public class MainMenuController : MonoBehaviour
                 animatorCamera.SetBool("isZoomOut", false);
                 //camMain.orthographicSize = 3.56953f;
                 StartCoroutine(CameraZoomOut());
+                ButtonVisability(false);
 
             }
             yield return null;
