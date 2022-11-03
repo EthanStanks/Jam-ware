@@ -47,5 +47,10 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 1016602280404889429, guid: beef4d76e8ca2c649b3697995d80136a, type: 3}
   RobberPrefab: {fileID: 6362606353583608221, guid: b9864ab9cfba231449e91a1f587c0ce2, type: 3}
   lstRobbers: []
-  lstEntrances: []
+  lstEntrances:
+  - {fileID: 0}
   lstSecurityCameras: []
+  PlayerLives: 1
+  timer: 0
+  LoseScreen: {fileID: 0}
+  PauseScreen: {fileID: 0}

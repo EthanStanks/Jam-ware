@@ -57,8 +57,11 @@ public class PlayerManager : MonoBehaviour
 
     void FlipPlayerSprites()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0) GuardFacingRight();
-        else if (Input.GetAxisRaw("Horizontal") < 0) GuardFacingLeft();
+        if (GameManager.instance.isPaused == false) // if this isnt here it let's the player flip back and forth with the game being paused lol
+        {
+            if (Input.GetAxisRaw("Horizontal") > 0) GuardFacingRight();
+            else if (Input.GetAxisRaw("Horizontal") < 0) GuardFacingLeft();
+        }
     }
     void GuardFacingRight()
     {
@@ -82,7 +85,7 @@ public class PlayerManager : MonoBehaviour
     }
     void MovePlayer()
     {
-        
+
         if (Input.GetKey(KeyCode.D))
         {
             playerGameObj.transform.position += Vector3.right * guardSpeed * Time.deltaTime;
@@ -175,7 +178,7 @@ public class PlayerManager : MonoBehaviour
             {
                 if (hit.transform.gameObject.CompareTag("Robber")) // if that something is a robber
                 {
-                    if(hit.transform.gameObject.GetComponent<theft>() != null)
+                    if (hit.transform.gameObject.GetComponent<theft>() != null)
                     {
                         hit.transform.gameObject.GetComponent<theft>().isCaught = true;
                     }

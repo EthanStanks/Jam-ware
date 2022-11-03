@@ -18,7 +18,11 @@ public class GameManager : MonoBehaviour
     //bool blTimerEnded; // timer ended bool
     bool timing = false;
     bool canSpawn = false;
+    [SerializeField] public bool isPaused = false;
     [SerializeField] GameObject LoseScreen;
+
+    [SerializeField] LevelLoader LevelLoaderScript; // i need it i neeeeeeeeeeeeeeeeed it
+    [SerializeField] GameObject PauseScreen;
 
     public void Awake()
     {
@@ -31,10 +35,13 @@ public class GameManager : MonoBehaviour
         timer = 0;
         //blTimerEnded = false;
         timing = true;
+        PauseGame(isPaused);
     }
 
     private void Update()
     {
+        KeyBindings();
+
         if (timing)
         {
             timing = false;
@@ -101,6 +108,36 @@ public class GameManager : MonoBehaviour
             SpawnRobber();
         }
         lstEntrances[num].GetComponent<EntranceController>().spawnRobber = true;
+    }
+
+    public void PauseGame(bool isPause)
+    {
+        PauseScreen.SetActive(isPause);
+        isPaused = isPause;
+        if (isPause)
+        {
+            Time.timeScale = 0;
+           // anything else that needs to happen when the game is paused
+        }
+        else
+        {
+            Time.timeScale = 1;
+            // anything else that needs to happen when the game is resumed
+        }
+    }
+    public void ReturnToMainMenu()
+    {
+        PauseGame(false);
+        // make add stuff that would make it that they lost or gave up idk
+        LevelLoaderScript.LoadLevel(0); // loads the main menu
+    }
+    void KeyBindings()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame(!isPaused);
+        }
+            
     }
 }
 
