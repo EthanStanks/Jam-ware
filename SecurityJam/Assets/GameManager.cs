@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> lstEntrances = new(); // list of entrance obj
     public List<GameObject> lstSecurityCameras = new(); // list of camera obj
     [SerializeField] public int PlayerLives = 1;
+    [SerializeField] public int GameEnd = 120;
     int intCurrentMap; // current map int
     [SerializeField] public int timer;
     //bool blTimerEnded; // timer ended bool
@@ -23,7 +25,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] LevelLoader LevelLoaderScript; // i need it i neeeeeeeeeeeeeeeeed it
     [SerializeField] GameObject PauseScreen;
-    [SerializeField] GameObject Clock;
+
+    [SerializeField] Sprite[] clock;
+    [SerializeField] Image clockObj;
 
     public void Awake()
     {
@@ -37,6 +41,7 @@ public class GameManager : MonoBehaviour
         //blTimerEnded = false;
         timing = true;
         PauseGame(isPaused);
+        UpdateClock();
     }
 
     private void Update()
@@ -64,6 +69,10 @@ public class GameManager : MonoBehaviour
         if (timer > 120)
         {
             WonGame();
+        }
+        if (timer % 10 == 0 && timer > 5)
+        {
+            UpdateClock();
         }
     }
 
@@ -140,5 +149,43 @@ public class GameManager : MonoBehaviour
         }
             
     }
+
+    void UpdateClock()
+    {
+        int hour = GameEnd / 6;
+        if (timer < hour)//midnight
+        {
+            clockObj.sprite = clock[1];
+        }
+        else if (timer < hour * 2)
+        {
+            clockObj.sprite = clock[2];
+        }
+        else if (timer < hour * 3)
+        {
+            clockObj.sprite = clock[3];
+        }
+        else if (timer < hour * 4)
+        {
+            clockObj.sprite = clock[4];
+        }
+        else if (timer < hour * 5)
+        {
+            clockObj.sprite = clock[5];
+        }
+        else if (timer < GameEnd)
+        {
+            clockObj.sprite = clock[6];
+        }
+        else if (timer > GameEnd)
+        {
+            clockObj.sprite = clock[7];
+        }
+        else
+        {
+            clockObj.sprite = clock[0];
+        }
+    }
+
 }
 
