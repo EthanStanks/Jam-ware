@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     bool canSpawn = false;
     [SerializeField] public bool isPaused = false;
     [SerializeField] GameObject LoseScreen;
+    [SerializeField] GameObject WinScreen;
 
     [SerializeField] LevelLoader LevelLoaderScript; // i need it i neeeeeeeeeeeeeeeeed it
     [SerializeField] GameObject PauseScreen;
@@ -92,13 +93,14 @@ public class GameManager : MonoBehaviour
     // won game func
     void WonGame()
     {
-        Debug.Log("You win");
+        WinScreen.SetActive(true);
+        Time.timeScale = 0;
         EndGame();
     }
     // lost game func
     void LostGame()
     {
-        Debug.Log("You suck");
+        Time.timeScale = 0;
         LoseScreen.SetActive(true);
         EndGame();
     }
@@ -152,38 +154,38 @@ public class GameManager : MonoBehaviour
 
     void UpdateClock()
     {
-        int hour = GameEnd / 6;
-        if (timer < hour)//midnight
+        int hour = GameEnd / 6; // hour = 20
+        if (timer < hour)  // time < 20
         {
-            clockObj.sprite = clock[1];
+            clockObj.sprite = clock[1]; // 12:00
         }
-        else if (timer < hour * 2)
+        else if (timer < hour * 2) // time < 40
         {
-            clockObj.sprite = clock[2];
+            clockObj.sprite = clock[2]; // 01:00
         }
-        else if (timer < hour * 3)
+        else if (timer < hour * 3) // time < 60
         {
-            clockObj.sprite = clock[3];
+            clockObj.sprite = clock[3]; // 02:00
         }
-        else if (timer < hour * 4)
+        else if (timer < hour * 4) // time < 80
         {
-            clockObj.sprite = clock[4];
+            clockObj.sprite = clock[4]; // 03:00
         }
-        else if (timer < hour * 5)
+        else if (timer < hour * 5) // time < 100
         {
-            clockObj.sprite = clock[5];
+            clockObj.sprite = clock[5]; // 04:00
         }
-        else if (timer < GameEnd)
+        else if (timer < GameEnd)  // time < 120
         {
-            clockObj.sprite = clock[6];
+            clockObj.sprite = clock[6]; // 05:00
         }
-        else if (timer > GameEnd)
+        else if (timer >= GameEnd) // time >= 120
         {
-            clockObj.sprite = clock[7];
+            clockObj.sprite = clock[7]; // 06:00
         }
         else
         {
-            clockObj.sprite = clock[0];
+            clockObj.sprite = clock[0]; // 00:00
         }
     }
 

@@ -516,7 +516,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 103794297}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1916386363}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &103794297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,7 +1455,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 414507694}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1916386363}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &414507694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,7 +1622,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 520599620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1916386363}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &520599620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3381,7 +3417,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1087133525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1916386363}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1087133525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3575,10 +3623,6 @@ PrefabInstance:
     - target: {fileID: 1279633561581845551, guid: 7f119ce34adbfc641b6832d260f79ef5, type: 3}
       propertyPath: m_Name
       value: darkman
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279633561581845551, guid: 7f119ce34adbfc641b6832d260f79ef5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f119ce34adbfc641b6832d260f79ef5, type: 3}
@@ -5940,6 +5984,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 14760659}
     - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
+      propertyPath: WinScreen
+      value: 
+      objectReference: {fileID: 297742160}
+    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
       propertyPath: LoseScreen
       value: 
       objectReference: {fileID: 1567237625}
@@ -5948,45 +5996,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1492494215}
     - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
       propertyPath: LevelLoaderScript
       value: 
       objectReference: {fileID: 1916386363}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[0]
-      value: 
-      objectReference: {fileID: 375853457, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[1]
-      value: 
-      objectReference: {fileID: 1231648925, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[2]
-      value: 
-      objectReference: {fileID: 1942480521, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[3]
-      value: 
-      objectReference: {fileID: 1852059065, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[4]
-      value: 
-      objectReference: {fileID: 1931139022, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[5]
-      value: 
-      objectReference: {fileID: -1202521097, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[6]
-      value: 
-      objectReference: {fileID: 960169447, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
-    - target: {fileID: 5302612062991583931, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
-      propertyPath: clock.Array.data[7]
-      value: 
-      objectReference: {fileID: 488590187, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
     - target: {fileID: 6137315564117262723, guid: a2d749141f579f045a82611a1d84b28e, type: 3}
       propertyPath: m_Name
       value: GameMan

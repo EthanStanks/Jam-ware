@@ -51,6 +51,20 @@ MonoBehaviour:
   - {fileID: 0}
   lstSecurityCameras: []
   PlayerLives: 1
+  GameEnd: 120
   timer: 0
+  isPaused: 0
   LoseScreen: {fileID: 0}
+  WinScreen: {fileID: 0}
+  LevelLoaderScript: {fileID: 0}
   PauseScreen: {fileID: 0}
+  clock:
+  - {fileID: 375853457, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  - {fileID: 1231648925, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  - {fileID: 1942480521, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  - {fileID: 1852059065, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  - {fileID: 1931139022, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  - {fileID: -1202521097, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  - {fileID: 960169447, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  - {fileID: 488590187, guid: 4a0cc31fa757e8242a47e4c56f6a6815, type: 3}
+  clockObj: {fileID: 0}
