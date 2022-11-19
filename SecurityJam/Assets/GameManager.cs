@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] LevelLoader LevelLoaderScript; // i need it i neeeeeeeeeeeeeeeeed it
     [SerializeField] GameObject PauseScreen;
+    [SerializeField] GameObject Clock;
 
     public void Awake()
     {
